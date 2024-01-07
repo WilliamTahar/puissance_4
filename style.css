@@ -1,0 +1,40 @@
+table {
+    background-color: blue;
+    padding: 2px;
+    z-index: 2;
+}
+
+td {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.coin {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 1;
+    position: relative;
+    animation-name: putCoin;
+    animation-duration: 0.8s;
+}
+
+@keyframes putCoin {
+    from {
+        bottom: 100vh;
+    }
+    to {
+        bottom: 0;
+    }
+}
