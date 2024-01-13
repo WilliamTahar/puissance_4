@@ -36,27 +36,60 @@ function putCoin(event) {
 }
 
 function gameOver(line, column) {
-    console.log(`${line}:${column}`)
-    console.log(document.getElementById(`${line}:${column}`).value, 'VALUE')
     function verticalFour() {
-        let count = 0
+        let count = 1
         let y = line;
-        while (y > 1 && y <= 5 && document.getElementById(`${y++}:${column}`).value === tour) {
+        while (y < 5 && document.getElementById(`${y++}:${column}`).value === tour)
+        {
             count++;
         }
-        return count >= 4;
+        return count > 3;
     }
 
     function horizontalFour() {
-        return false;
+        let count = 1;
+        let xRight = column, xLeft = column;
+        //let xLeft = column;
+        while (
+            (xRight++ < 6 && document.getElementById(`${line}:${xRight}`).value === tour)
+            ||
+            (xLeft-- > 0 && document.getElementById(`${line}:${xLeft}`).value === tour)
+            )
+            count++
+        return count > 3;
     }
 
-    function diagoRightFour() {
-        return false;
+    function diagoRightFour()
+    {
+        let count = 1;
+        let xRight = column, xLeft = column;
+        let yRight = line, yLeft = line;
+
+        while (
+            (xRight++ < 6 && yRight-- > 0 && document.getElementById(`${yRight}:${xRight}`).value === tour)
+        ||
+            (xLeft-- > 0 && yLeft++ < 5 && document.getElementById(`${yLeft}:${xLeft}`).value === tour)
+            )
+        {
+            count++
+        }
+        return count > 3;
     }
 
     function diagoLeftFour() {
-        return false;
+        let count = 1;
+        let xRight = column, xLeft = column;
+        let yRight = line, yLeft = line;
+
+        while (
+            (xRight++ < 6 && yRight++ < 5 && document.getElementById(`${yRight}:${xRight}`).value === tour)
+            ||
+            (xLeft-- > 0 && yLeft > 0 && document.getElementById(`${yLeft}:${xLeft}`).value === tour)
+            )
+        {
+            count++
+        }
+        return count > 3;
     }
 
     const isWin = verticalFour() || horizontalFour() || diagoRightFour() || diagoLeftFour()
